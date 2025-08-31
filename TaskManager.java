@@ -26,7 +26,7 @@ public class TaskManager {
                 showTasks();
                 break;
 
-            // 👇 leave delete for Sara to add later
+            //  delete for Sara to add later
             case "delete":
                 if (args.length < 2) {
                     System.out.println("Please provide index to delete. Usage: java TaskManager delete <index>");
@@ -46,7 +46,7 @@ public class TaskManager {
         }
     }
 
-    // ✅ Ali: Add task
+    //  Ali: Add task
     public static void addTask(String task) {
         List<String> tasks = loadTasks();
         tasks.add(task);
@@ -54,7 +54,7 @@ public class TaskManager {
         System.out.println("Added task: " + task);
     }
 
-    // ✅ Ali: Show tasks
+    //  Ali: Show tasks
     public static void showTasks() {
         List<String> tasks = loadTasks();
         if (tasks.isEmpty()) {
@@ -81,7 +81,7 @@ public class TaskManager {
         System.out.println("Deleted task #" + index + ": " + removed);
     }
 
-    // 🔧 Helpers
+    
     private static List<String> loadTasks() {
         List<String> tasks = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
