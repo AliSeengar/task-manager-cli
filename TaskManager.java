@@ -28,11 +28,21 @@ public class TaskManager {
 
             // 👇 leave delete for Sara to add later
             case "delete":
-                System.out.println("Delete feature not implemented yet. (Sara’s task)");
+                if (args.length < 2) {
+                    System.out.println("Please provide index to delete. Usage: java TaskManager delete <index>");
+                } else {
+                    try {
+                        int idx = Integer.parseInt(args[1]);
+                        deleteTask(idx);
+                    } catch (NumberFormatException e) {
+                        System.out.println("Index must be a number.");
+                    }
+                }
                 break;
 
             default:
                 System.out.println("Unknown command: " + command);
+                System.out.println("Available commands: add, show, delete");
         }
     }
 
@@ -54,6 +64,21 @@ public class TaskManager {
                 System.out.println((i + 1) + ". " + tasks.get(i));
             }
         }
+    }
+    
+    public static void deleteTask(int index) {
+        List<String> tasks = loadTasks();
+        if (tasks == null || tasks.isEmpty()) {
+            System.out.println("No tasks to delete.");
+            return;
+        }
+        if (index < 1 || index > tasks.size()) {
+            System.out.println("Invalid index. Use `java TaskManager show` to see task numbers.");
+            return;
+        }
+        String removed = tasks.remove(index - 1);
+        saveTasks(tasks);
+        System.out.println("Deleted task #" + index + ": " + removed);
     }
 
     // 🔧 Helpers
